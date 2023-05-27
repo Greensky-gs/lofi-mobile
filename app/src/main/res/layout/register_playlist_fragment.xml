@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/textView4"
+        style="@style/title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/registerPlaylist"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/register_name_field"
+        style="@style/subtitle"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_margin="10dp"
+        android:hint="@string/playlistHint"
+        app:layout_constraintTop_toBottomOf="@+id/textView4"
+        tools:layout_editor_absoluteX="10dp" />
+
+    <TextView
+        android:id="@+id/register_error_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/errorColor"
+        style="@style/subtitle"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toTopOf="@+id/register_button"
+        app:layout_constraintTop_toBottomOf="@+id/register_name_field" />
+    <Button
+        android:id="@+id/register_button"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/textView4"
+        android:text="@string/registerConfirm"
+        style="@style/subtitle"
+        android:textColor="@color/white"
+        android:textSize="28dp"
+        android:backgroundTint="@color/lightPurple"/>
+</androidx.constraintlayout.widget.ConstraintLayout>

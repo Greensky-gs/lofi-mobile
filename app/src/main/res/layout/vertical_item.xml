@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="100dp">
+
+    <ImageView
+        android:id="@+id/song_image"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/default_song_img"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <ImageView
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:src="@drawable/ic_play"
+        app:layout_constraintBottom_toBottomOf="@+id/song_image"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:tint="@color/black"
+        android:layout_marginRight="200dp"
+        android:id="@+id/play_icon"
+        android:elevation="3dp"/>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:alpha="0.7"
+        app:cardBackgroundColor="@color/lightWhite"
+        android:backgroundTint="@color/lightWhite"
+        android:elevation="1dp"
+        app:layout_constraintBottom_toBottomOf="@+id/play_icon"
+        app:layout_constraintEnd_toEndOf="@+id/play_icon"
+        app:layout_constraintStart_toStartOf="@+id/play_icon"
+        app:cardCornerRadius="10dp"/>
+
+    <ImageView
+        android:id="@+id/add_to_playlist_icon"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:elevation="9dp"
+        android:src="@drawable/ic_playlist_add"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/song_image"
+        app:layout_constraintStart_toEndOf="@+id/play_icon"
+        app:tint="@color/black" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/add_to_playlist_background"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:alpha="0.7"
+        android:backgroundTint="@color/lightWhite"
+        android:elevation="1dp"
+        app:cardBackgroundColor="@color/lightWhite"
+        app:cardCornerRadius="10dp"
+        app:layout_constraintBottom_toBottomOf="@+id/play_icon"
+        app:layout_constraintEnd_toEndOf="@+id/add_to_playlist_icon" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="30dp"
+        android:alpha="0.7"
+        app:cardBackgroundColor="@color/lightWhite"
+        app:cardCornerRadius="4dp"
+        app:cardElevation="5dp"
+        app:layout_constraintBottom_toBottomOf="@+id/song_image"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/song_image"
+        app:layout_constraintTop_toTopOf="@+id/song_image">
+
+        <TextView
+            android:id="@+id/song_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:alpha="1"
+            android:elevation="10dp"
+            android:fontFamily="@font/dancingscript"
+            android:paddingLeft="48dp"
+            android:paddingRight="48dp"
+            android:paddingBottom="8dp"
+            android:text="@string/defaultSongName"
+            android:textColor="@color/black"
+            android:textSize="20dp" />
+    </androidx.cardview.widget.CardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
