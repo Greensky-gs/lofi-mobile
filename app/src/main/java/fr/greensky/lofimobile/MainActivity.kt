@@ -17,10 +17,9 @@ class MainActivity : AppCompatActivity() {
 
         loadFragment(WaitFragment(this))
 
-        handleNavigation()
-
         val db = Database(this)
         db.launch {
+            handleNavigation()
             loadFragment(HomeFragment(this))
         }
     }
