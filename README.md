@@ -11,3 +11,11 @@ The application basically requires an internet connexion, and some more permissi
 ## Android version
 
 The api 24 is used for this app, so it is available for every android version above samsung 7.0 (included)
+
+## Download
+
+Go the the [release section](https://github.com/Greensky-gs/lofi-mobile/releases), pick a version and follow the instructions
+
+## Credits
+
+I did not claim in any way to own Lofi music present on the application. I give credits to [Lofi Girl](https://www.youtube.com/c/LofiGirl) for all the songs in the application.
