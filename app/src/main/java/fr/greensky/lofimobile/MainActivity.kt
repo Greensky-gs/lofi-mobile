@@ -40,7 +40,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    public fun loadFragment(fragment: Fragment) {
+    fun loadFragment(fragment: Fragment) {
         clearBtns()
         val transaction = supportFragmentManager.beginTransaction()
         transaction.replace(R.id.fragment_container, fragment)
@@ -48,9 +48,9 @@ class MainActivity : AppCompatActivity() {
 
         transaction.commit()
     }
-    fun clearBtns() {
+    private fun clearBtns() {
         val plus = findViewById<ImageView>(R.id.main_plus_icon)
-        val back = findViewById<ImageView>(R.id.main_back_icon);
+        val back = findViewById<ImageView>(R.id.main_back_icon)
 
         plus.visibility = View.GONE
         back.visibility = View.GONE
