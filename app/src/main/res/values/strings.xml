@@ -1,0 +1,42 @@
+<resources>
+    <string name="app_name">lofi Mobile</string>
+
+    <!-- Home page -->
+    <string name="recently">Récents</string>
+    <string name="playing">Écoute</string>
+    <string name="defaultSongName">Nom de la musique</string>
+    <string name="defaultCurrentTrack">Piste</string>
+    <string name="defaultPlaying">Hi jude - Sun Swells (morning gateway)</string>
+
+    <!-- playlist -->
+    <string name="myPlaylists">Mes playlists</string>
+    <string name="defaultPlaylistName">J\'aime</string>
+
+    <!-- search -->
+    <string name="placeholder">Chercher</string>
+
+    <!-- Playlist -->
+    <string name="registerPlaylist">Créer une playlist</string>
+    <string name="playlistName">Nom</string>
+    <string name="playlistHint">J\'aime</string>
+    <string name="alreadyExists">La playlist existe déjà</string>
+    <string name="registerConfirm">Créer</string>
+    <string name="emptyName">Merci d\'entrer un nom</string>
+    <string name="confirmDeletePlaylist">Êtes vous sûr de supprimer cette playlist ?</string>
+    <string name="confirmDeleteSongFromPlaylist">Êtes vous sûr de supprimer cette musique de la playlist ?</string>
+
+    <!-- popup -->
+    <string name="popup_authors_title">Auteurs</string>
+    <string name="popup_default_authors">Auteurs de la musique</string>
+    <string name="popup_tracks_title">Musiques</string>
+
+    <!-- Add to playlist -->
+    <string name="addToPlaylistTitle">Ajouter à une playlist</string>
+    <string name="addToPlaylistConfirm">Ajouter</string>
+    <string name="addToPlaylistErrorNoStation">Une erreur a eu lieu</string>
+    <string name="addToPlaylistNoPlaylist">Veuillez sélectionner une playlist</string>
+
+    <!-- delete playlist messages -->
+    <string name="confirmDeletePlaylistYes">Oui</string>
+    <string name="confirmDeletePlaylistNo">Non</string>
+</resources>
