@@ -6,7 +6,7 @@ This is one of my very first kotlin application, feel free to create a pull requ
 
 ## Application requirements
 
-The application basically requires an internet connexion, and some more permissions (juste 
+The application basically requires an internet connexion, and some more permissions (juste to download files from external storage)
 
 ## Android version
 
