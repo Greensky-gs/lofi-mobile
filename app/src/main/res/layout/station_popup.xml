@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="360dp"
     android:layout_height="500dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -96,6 +95,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
+        app:tint="@color/black"
         android:id="@+id/play_icon"
         android:layout_width="60dp"
         android:layout_height="60dp"
