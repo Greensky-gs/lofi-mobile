@@ -18,7 +18,7 @@ import fr.greensky.lofimobile.fragments.HomeFragment
 import fr.greensky.lofimobile.fragments.PlaylistPage
 import fr.greensky.lofimobile.models.StationModel
 
-class PlaylistSongsAdapter(public val context: MainActivity, private val list: List<StationModel>, private val layoutId: Int, private val playlistName: String) : RecyclerView.Adapter<PlaylistSongsAdapter.ViewHolder>() {
+class PlaylistSongsAdapter(val context: MainActivity, private val list: List<StationModel>, private val layoutId: Int, private val playlistName: String) : RecyclerView.Adapter<PlaylistSongsAdapter.ViewHolder>() {
     class ViewHolder(view: View): RecyclerView.ViewHolder(view) {
         val img = view.findViewById<ImageView>(R.id.playing_img)
         val songName = view.findViewById<TextView>(R.id.playing_song_title)
@@ -84,6 +84,23 @@ class PlaylistSongsAdapter(public val context: MainActivity, private val list: L
                     context.loadFragment(HomeFragment(context, HomeFragment.Singleton.stationList))
                 }
             } else {
+                val songs = Database(context).getPlaylist(playlistName)!!.ids
+
+                var found = false
+                val toPush = mutableListOf<String>()
+
+                for (i in 0 until songs.length()) {
+                    if (songs[i] == current.id) {
+                        found = true
+                    }
+                    if (found && songs[i] != current.id) {
+                        toPush.add(0, songs[i] as String)
+                    }
+                }
+                for (i in 0 until toPush.size) {
+                    MusicDiffuser(context).playlistAddTrack(toPush[i])
+                }
+
                 MusicDiffuser(context).start(current.id, {
                     update()
                     context.loadFragment(HomeFragment(context, HomeFragment.Singleton.stationList))
