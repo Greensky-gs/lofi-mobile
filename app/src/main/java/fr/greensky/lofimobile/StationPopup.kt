@@ -51,6 +51,8 @@ class StationPopup(private val context: MainActivity, private val station: Stati
 
     private fun setPlayButton() {
         val btn = findViewById<ImageView>(R.id.play_icon)
+        btn.setColorFilter(ContextCompat.getColor(context, R.color.black), PorterDuff.Mode.SRC_ATOP)
+
         fun update() {
             if (MusicDiffuser.Singleton.currentSong != null && station.id == MusicDiffuser.Singleton.currentSong && MusicDiffuser.Singleton.diffuser?.isPlaying == true) {
                 btn.setImageResource(R.drawable.ic_pause)

@@ -30,7 +30,7 @@ class Database(public val context: MainActivity) {
     }
 
     fun launch(callback: () -> Unit) {
-        databaseRef.addValueEventListener(object: ValueEventListener {
+        databaseRef.addListenerForSingleValueEvent(object: ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 stations.clear()
                 for (sn in snapshot.children) {

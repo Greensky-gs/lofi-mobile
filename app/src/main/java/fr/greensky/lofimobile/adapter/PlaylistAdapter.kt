@@ -58,9 +58,8 @@ class PlaylistAdapter(public val context: MainActivity, private val list: List<P
         } else {
             holder.shuffleBtn.setOnClickListener {
                 val player = MusicDiffuser(context)
-                val songs: MutableList<String> = mutableListOf();
+                val songs: MutableList<String> = mutableListOf()
 
-                player.clearTracks()
                 for (i in 0 until current.ids.length()) {
                     songs.add(current.ids[0].toString())
                 }
@@ -72,7 +71,7 @@ class PlaylistAdapter(public val context: MainActivity, private val list: List<P
 
                 if (songs.size > 1) {
                     for (i in 1 until songs.size) {
-                        player.addTrack(songs[i])
+                        player.playlistAddTrack(songs[i])
                     }
                 }
             }

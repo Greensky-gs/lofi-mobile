@@ -76,6 +76,9 @@ class MusicDiffuser(private val context: MainActivity) {
     fun addTrack(id: String) {
         tracks.add(id)
     }
+    fun playlistAddTrack(id: String) {
+        tracks.add(0, id)
+    }
     fun removeTrack(id: String) {
         tracks = tracks.filter{ it != id } as MutableList<String>
     }

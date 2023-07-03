@@ -118,7 +118,7 @@ class HomeFragment(private val context: MainActivity, private val songList: Muta
         }
         val random = Random()
 
-        while (songs.size < 25) {
+        while (songs.size < 25 && stations.size > 0) {
             val randomIndex = random.nextInt(stations.size)
             val randomSong = stations[randomIndex]
 

@@ -66,25 +66,25 @@
         android:layout_marginBottom="60dp" />
 
     <View
-        android:id="@+id/view3"
+        android:id="@+id/mainNavigationView"
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:background="@color/purple"
         app:layout_constraintBottom_toBottomOf="parent"></View>
 
     <ImageView
-        android:id="@+id/playlist_page"
+        android:id="@+id/mainPlaylistPageNav"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:src="@drawable/ic_playlist_add"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/home_page"
-        app:layout_constraintStart_toStartOf="@+id/view3"
+        app:layout_constraintEnd_toStartOf="@+id/mainHomePageNav"
+        app:layout_constraintStart_toStartOf="@+id/mainNavigationView"
         android:layout_marginRight="40dp"
         style="@style/MenuBarIconStyle" />
 
     <ImageView
-        android:id="@+id/home_page"
+        android:id="@+id/mainHomePageNav"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:src="@drawable/ic_action_name"
@@ -94,13 +94,13 @@
         style="@style/MenuBarIconStyle" />
 
     <ImageView
-        android:id="@+id/search_page"
+        android:id="@+id/mainSearchPageNav"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:src="@drawable/ic_loupe"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/home_page"
+        app:layout_constraintStart_toEndOf="@+id/mainHomePageNav"
         android:layout_marginLeft="40dp"
         style="@style/MenuBarIconStyle" />
 </androidx.constraintlayout.widget.ConstraintLayout>
