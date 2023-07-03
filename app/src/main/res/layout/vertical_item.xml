@@ -4,15 +4,26 @@
     android:layout_width="match_parent"
     android:layout_height="100dp">
 
-    <ImageView
+    <androidx.cardview.widget.CardView
         android:id="@+id/song_image"
         android:layout_width="match_parent"
         android:layout_height="100dp"
-        android:scaleType="centerCrop"
-        android:src="@drawable/default_song_img"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent"
+        app:cardCornerRadius="8dp">
+
+        <ImageView
+            android:id="@+id/song_image_source"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/default_song_img"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.cardview.widget.CardView>
 
     <ImageView
         android:layout_width="40dp"

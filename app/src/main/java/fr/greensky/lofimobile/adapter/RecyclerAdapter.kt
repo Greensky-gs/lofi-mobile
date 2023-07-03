@@ -23,7 +23,7 @@ import fr.greensky.lofimobile.fragments.HomeFragment.Singleton.stationList
 
 class RecyclerAdapter(public val context: MainActivity, private val list: List<StationModel>, private val layoutId: Int, private val displayButtons: Boolean = false): RecyclerView.Adapter<RecyclerAdapter.ViewHolder>() {
     class ViewHolder(view: View): RecyclerView.ViewHolder(view) {
-        val image: ImageView = view.findViewById(R.id.song_image)
+        val image: ImageView = view.findViewById(R.id.song_image_source)
         val songName: TextView? = view.findViewById(R.id.song_name)
     }
 
