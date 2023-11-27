@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import fr.greensky.lofimobile.Database
@@ -30,7 +31,8 @@ class PlaylistPage(private val context: MainActivity, private val playlist: Play
         back.setOnClickListener {
             context.loadFragment(PlaylistsFragment(context))
         }
-        val view = inflater?.inflate(R.layout.playlist_page, container, false)
+        val db = Database(context)
+        val view = inflater?.inflate(if (db.getTheme() === "dark") { R.layout.playlist_page_dark } else {R.layout.playlist_page}, container, false)
 
         view?.findViewById<TextView>(R.id.playlist_page_name)?.text = playlist.name
         val recycler = view?.findViewById<RecyclerView>(R.id.playlist_page_recycler)

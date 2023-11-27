@@ -63,6 +63,23 @@ class Database(public val context: MainActivity) {
 
         })
     }
+    fun getTheme(): String {
+        val themes = context.getSharedPreferences("configs", 0x0000);
+        val data = themes.getBoolean("theme", false)
+
+        return if (data) { "dark" } else { "light" }
+    }
+    fun swapTheme(): Boolean {
+        val themes = context.getSharedPreferences("configs", 0x0000)
+        val data = getTheme();
+
+        val theme = if (data == "dark") { true } else { false };
+        val editor = themes.edit();
+
+        editor.putBoolean("theme", !theme);
+        editor.apply()
+        return !theme;
+    }
     fun getPlaylist(name: String): PlaylistModel? {
         val preferences = context.getSharedPreferences("playlist", 0x0000)
 

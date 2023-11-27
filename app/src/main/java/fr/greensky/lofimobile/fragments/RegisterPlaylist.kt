@@ -20,7 +20,8 @@ class RegisterPlaylist(private val context: MainActivity) : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater?.inflate(R.layout.register_playlist_fragment, container, false)
+        val db = Database(context)
+        val view = inflater?.inflate(if (db.getTheme() === "dark") { R.layout.register_playlist_fragment_dark } else {R.layout.register_playlist_fragment}, container, false)
 
         val button = view?.findViewById<Button>(R.id.register_button)
         val field = view?.findViewById<EditText>(R.id.register_name_field)

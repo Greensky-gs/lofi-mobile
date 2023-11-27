@@ -22,7 +22,8 @@ class AddToPlaylist(private val context: MainActivity) : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater?.inflate(R.layout.add_to_playlist_fragment, container, false)
+        val db = Database(context)
+        val view = inflater?.inflate(if (db.getTheme() === "dark") { R.layout.add_to_playlist_fragment_dark } else {R.layout.add_to_playlist_fragment}, container, false)
         val back = context.findViewById<ImageView>(R.id.main_back_icon)
         back.visibility = View.VISIBLE
 

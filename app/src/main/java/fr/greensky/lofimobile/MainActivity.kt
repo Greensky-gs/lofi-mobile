@@ -15,22 +15,27 @@ class MainActivity : AppCompatActivity() {
     private var hasBeenLoaded = false
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        val db = Database(this)
+
+        //setContentView(if (db.getTheme() === "dark") { R.layout.activity_main_dark } else { R.layout.activity_main })
         setContentView(R.layout.activity_main)
 
+        updateTheme(db.getTheme())
         loadFragment(WaitFragment(this))
-        val db = Database(this)
+
         db.launch {
             hasBeenLoaded = true
-            handleNavigation()
+            handleNavigation(db)
 
             loadFragment(HomeFragment(this))
         }
     }
 
-    private fun handleNavigation() {
+    private fun handleNavigation(db: Database) {
         val playlist = findViewById<ImageView>(R.id.mainPlaylistPageNav)
         val home = findViewById<ImageView>(R.id.mainHomePageNav)
         val search = findViewById<ImageView>(R.id.mainSearchPageNav)
+        val theme = findViewById<ImageView>(R.id.switchTheme)
 
         playlist.setOnClickListener {
             loadFragment(PlaylistsFragment(this))
@@ -40,6 +45,10 @@ class MainActivity : AppCompatActivity() {
         }
         search.setOnClickListener {
             loadFragment(SearchFragment(this))
+        }
+        theme.setOnClickListener {
+            Log.i("Theme: ", "detected")
+            handleTheme(db)
         }
     }
 
@@ -64,6 +73,24 @@ class MainActivity : AppCompatActivity() {
 
         plus.setOnClickListener(null)
         back.setOnClickListener(null)
+    }
+    private fun handleTheme(db: Database) {
+        val fragment =
+            this.supportFragmentManager.findFragmentById(R.id.fragment_container) ?: return
+
+        if (fragment === null) {
+            Log.i("Theme: ", "null")
+            return
+        }
+        val swap = db.swapTheme()
+        val current = db.getTheme()
+
+        updateTheme(current)
+        loadFragment(fragment)
+    }
+    private fun updateTheme(current: String) {
+        val button = findViewById<ImageView>(R.id.switchTheme)
+        button.setImageResource(if (current === "dark") { R.drawable.ic_light } else { R.drawable.ic_dark })
     }
 
     override fun onResume() {

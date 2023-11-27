@@ -1,6 +1,8 @@
 package fr.greensky.lofimobile
 
+import android.media.AudioAttributes
 import android.media.MediaPlayer
+import android.net.Uri
 import com.google.firebase.storage.FirebaseStorage
 import fr.greensky.lofimobile.Database.Singleton.stations
 import fr.greensky.lofimobile.MusicDiffuser.Singleton.currentSong
@@ -8,6 +10,8 @@ import fr.greensky.lofimobile.MusicDiffuser.Singleton.diffuser
 import fr.greensky.lofimobile.MusicDiffuser.Singleton.tracks
 import fr.greensky.lofimobile.fragments.HomeFragment
 import fr.greensky.lofimobile.fragments.HomeFragment.Singleton.stationList
+import java.util.stream.Stream
+import javax.xml.transform.stream.StreamSource
 
 class MusicDiffuser(private val context: MainActivity) {
     object Singleton {

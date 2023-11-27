@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.fragment.app.Fragment
+import fr.greensky.lofimobile.Database
 import fr.greensky.lofimobile.MainActivity
 import fr.greensky.lofimobile.R
 
@@ -16,7 +17,10 @@ class WaitFragment(private val context: MainActivity) : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater?.inflate(R.layout.wait_fragment, container, false)
+        val db = Database(context)
+        val theme = if (db.getTheme() === "dark") { R.layout.wait_fragment_dark } else { R.layout.wait_fragment }
+
+        return inflater?.inflate(theme, container, false)
     }
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)

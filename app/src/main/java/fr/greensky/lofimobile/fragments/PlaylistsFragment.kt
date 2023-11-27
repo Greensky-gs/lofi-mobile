@@ -9,7 +9,6 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import fr.greensky.lofimobile.Database
 import fr.greensky.lofimobile.MainActivity
-import fr.greensky.lofimobile.MusicDiffuser
 import fr.greensky.lofimobile.PlaylistAdapter.PlaylistAdapter
 import fr.greensky.lofimobile.R
 import fr.greensky.lofimobile.adapter.ItemDecoration
@@ -25,8 +24,9 @@ class PlaylistsFragment(private val context: MainActivity): Fragment() {
         plus.setOnClickListener {
             context.loadFragment(RegisterPlaylist(context))
         }
+        val db = Database(context)
+        val view = inflater?.inflate(if (db.getTheme() === "dark") { R.layout.playlist_fragment_dark } else {R.layout.playlist_fragment}, container, false)
 
-        val view = inflater?.inflate(R.layout.playlist_fragment, container, false)
         val recycler = view?.findViewById<RecyclerView>(R.id.playlist_recycler!!)
 
         val list = Database(context).playlists()

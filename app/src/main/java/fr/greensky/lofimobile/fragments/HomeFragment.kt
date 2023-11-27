@@ -34,11 +34,20 @@ class HomeFragment(private val context: MainActivity, private val songList: Muta
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        val db = Database(context)
         val isPlaying = diffuser !== null && currentSong !== null
         val view = inflater?.inflate(if (isPlaying) {
-            R.layout.home_fragment_playing
+            if (db.getTheme() === "dark") {
+                R.layout.home_fragment_playing_dark
+            } else {
+                R.layout.home_fragment_playing
+            }
         } else {
-            R.layout.home_fragment
+            if (db.getTheme() === "dark") {
+                R.layout.home_fragment_dark
+            } else {
+                R.layout.home_fragment
+            }
         }, container, false)
 
         if (isPlaying) {

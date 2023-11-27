@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.EditText
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
+import fr.greensky.lofimobile.Database
 import fr.greensky.lofimobile.Database.Singleton.stations
 import fr.greensky.lofimobile.MainActivity
 import fr.greensky.lofimobile.R
@@ -21,7 +22,10 @@ class SearchFragment(private val context: MainActivity) : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater?.inflate(R.layout.search_page, container, false)
+        val db = Database(context)
+        val theme = if (db.getTheme() === "dark") { R.layout.search_page_dark } else { R.layout.search_page }
+
+        val view = inflater?.inflate(theme, container, false)
         val textInput = view?.findViewById<EditText>(R.id.search_input)
 
         val recycler = view?.findViewById<RecyclerView>(R.id.search_results_recycler)
