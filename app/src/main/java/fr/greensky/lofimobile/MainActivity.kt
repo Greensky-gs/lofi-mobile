@@ -6,7 +6,9 @@ import android.util.Log
 import android.view.View
 import android.widget.ImageView
 import androidx.fragment.app.Fragment
+import fr.greensky.lofimobile.adapter.AddToPlaylist
 import fr.greensky.lofimobile.fragments.HomeFragment
+import fr.greensky.lofimobile.fragments.PlaylistPage
 import fr.greensky.lofimobile.fragments.PlaylistsFragment
 import fr.greensky.lofimobile.fragments.SearchFragment
 import fr.greensky.lofimobile.fragments.WaitFragment
@@ -47,7 +49,6 @@ class MainActivity : AppCompatActivity() {
             loadFragment(SearchFragment(this))
         }
         theme.setOnClickListener {
-            Log.i("Theme: ", "detected")
             handleTheme(db)
         }
     }
@@ -86,11 +87,45 @@ class MainActivity : AppCompatActivity() {
         val current = db.getTheme()
 
         updateTheme(current)
-        loadFragment(fragment)
+
+        alternate(fragment.toString())
     }
     private fun updateTheme(current: String) {
         val button = findViewById<ImageView>(R.id.switchTheme)
         button.setImageResource(if (current === "dark") { R.drawable.ic_light } else { R.drawable.ic_dark })
+    }
+    private fun alternate(input: String) {
+        val fragmentFunctions = listOf(
+            fun () {
+                loadFragment(HomeFragment(this))
+            },
+            fun () {
+                loadFragment(SearchFragment(this))
+            },
+            fun() {
+                loadFragment(PlaylistsFragment(this))
+            },
+            fun() {
+                val db = Database(this)
+                loadFragment(PlaylistPage(this, db.currentPlaylist()!!))
+            },
+            fun () {
+                loadFragment(AddToPlaylist(this))
+            }
+        )
+            val fragmentnames = listOf<String>(
+                "HomeFragment",
+                "SearchFragment",
+                "PlaylistsFragment",
+                "PlaylistPage",
+                "AddToPlaylist",
+            )
+        val fragmentName = input.split('{').first()
+        Log.i("Name", fragmentName.length.toString())
+        val index = fragmentnames.indexOf(fragmentName)
+        if (index == -1) return
+
+        (fragmentFunctions[index])()
     }
 
     override fun onResume() {

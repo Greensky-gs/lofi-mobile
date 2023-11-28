@@ -8,6 +8,7 @@ import com.google.firebase.database.ValueEventListener
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import com.google.gson.Gson
+import fr.greensky.lofimobile.Database.Singleton.currentPlaylist
 import fr.greensky.lofimobile.Database.Singleton.databaseRef
 import fr.greensky.lofimobile.Database.Singleton.stations
 import fr.greensky.lofimobile.Database.Singleton.storageRef
@@ -27,6 +28,8 @@ class Database(public val context: MainActivity) {
         val stations = arrayListOf<StationModel>()
 
         var currentToAdd: StationModel? = null
+
+        var currentPlaylist: PlaylistModel? = null
     }
 
     fun launch(callback: () -> Unit) {
@@ -221,5 +224,12 @@ class Database(public val context: MainActivity) {
     }
     fun hasAvailablePlaylists(id: String): Boolean {
         return availablePlaylists(id).isNotEmpty()
+    }
+    fun currentPlaylist(): PlaylistModel? {
+        return currentPlaylist
+    }
+    fun setCurrentPlaylist(playlist: PlaylistModel): PlaylistModel {
+        currentPlaylist = playlist
+        return playlist
     }
 }

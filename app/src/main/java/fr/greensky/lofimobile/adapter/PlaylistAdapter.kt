@@ -11,6 +11,7 @@ import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import fr.greensky.lofimobile.Database
 import fr.greensky.lofimobile.Database.Singleton.stations
 import fr.greensky.lofimobile.MainActivity
 import fr.greensky.lofimobile.MusicDiffuser
@@ -48,7 +49,9 @@ class PlaylistAdapter(public val context: MainActivity, private val list: List<P
             Glide.with(context).load(random.img).into(holder.img)
         }
 
+        val db = Database(context)
         holder.itemView.setOnClickListener {
+            db.setCurrentPlaylist(current)
             context.loadFragment(PlaylistPage(context, current))
         }
 
