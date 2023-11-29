@@ -47,7 +47,7 @@ class AddToPlaylist(private val context: MainActivity) : Fragment() {
                 if (value.isNullOrBlank() || value.isNullOrEmpty()) {
                     error?.text = getString(R.string.addToPlaylistNoPlaylist)
                 } else {
-                    Database(context).addToPlaylist(value, currentToAdd!!.id)
+                    Database(context).addToPlaylist(value, currentToAdd!!.id, null)
                     currentToAdd = null
                     context.loadFragment(PlaylistsFragment(context))
                 }

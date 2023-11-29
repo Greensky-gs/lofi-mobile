@@ -23,6 +23,7 @@ import fr.greensky.lofimobile.models.StationModel
 import fr.greensky.lofimobile.adapter.ItemDecoration
 import fr.greensky.lofimobile.adapter.RecyclerAdapter
 import fr.greensky.lofimobile.fragments.HomeFragment.Singleton.stationList
+import fr.greensky.lofimobile.models.PlaylistModel
 import java.util.Random
 
 class HomeFragment(private val context: MainActivity, private val songList: MutableList<StationModel>? = mutableListOf()): Fragment() {
@@ -125,14 +126,18 @@ class HomeFragment(private val context: MainActivity, private val songList: Muta
         } else {
             mutableListOf()
         }
-        val random = Random()
 
-        while (songs.size < 25 && stations.size > 0) {
-            val randomIndex = random.nextInt(stations.size)
-            val randomSong = stations[randomIndex]
+        if (songs.size === 0) {
+            val playlist = db.getPlaylist(getString(R.string.recentlyPlaylist))
+            if (playlist == null) {
+                songs = mutableListOf()
+            } else {
+                var playlistsongs = mutableListOf<StationModel>()
+                for (i in 0 until playlist.ids.length()) {
+                    playlistsongs.add(stations.find { it.id == playlist.ids[i] }!!)
+                }
 
-            if (!songs.contains(randomSong)) {
-                songs.add(randomSong)
+                songs = playlistsongs
             }
         }
 

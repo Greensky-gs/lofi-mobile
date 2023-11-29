@@ -3,6 +3,7 @@ package fr.greensky.lofimobile
 import android.media.AudioAttributes
 import android.media.MediaPlayer
 import android.net.Uri
+import android.util.Log
 import com.google.firebase.storage.FirebaseStorage
 import fr.greensky.lofimobile.Database.Singleton.stations
 import fr.greensky.lofimobile.MusicDiffuser.Singleton.currentSong
@@ -10,6 +11,7 @@ import fr.greensky.lofimobile.MusicDiffuser.Singleton.diffuser
 import fr.greensky.lofimobile.MusicDiffuser.Singleton.tracks
 import fr.greensky.lofimobile.fragments.HomeFragment
 import fr.greensky.lofimobile.fragments.HomeFragment.Singleton.stationList
+import fr.greensky.lofimobile.models.StationModel
 import java.util.stream.Stream
 import javax.xml.transform.stream.StreamSource
 
@@ -24,6 +26,7 @@ class MusicDiffuser(private val context: MainActivity) {
     }
     fun start(id: String, callback: (() -> Unit)? = null, callbackOnEnd: (() -> Unit)? = null) {
         diffuser = MediaPlayer()
+        val db = Database(context)
 
         FirebaseStorage.getInstance().getReference("${id}.mp3").downloadUrl.addOnSuccessListener {
             diffuser?.setDataSource(it.toString())
@@ -38,6 +41,32 @@ class MusicDiffuser(private val context: MainActivity) {
                 diffuser?.setOnCompletionListener {
                     if (callbackOnEnd != null) {
                         callbackOnEnd()
+                    }
+                    db.addToPlaylist(context.getString(R.string.recently), id, 25)
+
+                    val fragment =
+                        context.supportFragmentManager.findFragmentById(R.id.fragment_container)
+
+                    if (fragment !== null) {
+                        val fragmentName = fragment.toString().split('{').first()
+                        if (fragmentName === "HomeFragment") {
+                            var songs = mutableListOf<StationModel>()
+
+                            val playlist = db.getPlaylist(context.getString(R.string.recentlyPlaylist))
+                            if (playlist == null) {
+                                songs = mutableListOf()
+                            } else {
+                                var playlistsongs = mutableListOf<StationModel>()
+                                for (i in 0 until playlist.ids.length()) {
+                                    playlistsongs.add(stations.find { it.id == playlist.ids[i] }!!)
+                                }
+
+                                songs = playlistsongs
+                            }
+                            if (songs.size > 0) {
+                                context.loadFragment(HomeFragment(context, db.getCurrentHomeList()))
+                            }
+                        }
                     }
                     skip()
                 }

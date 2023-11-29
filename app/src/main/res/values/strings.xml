@@ -24,6 +24,8 @@
     <string name="emptyName">Merci d\'entrer un nom</string>
     <string name="confirmDeletePlaylist">Êtes vous sûr de supprimer cette playlist ?</string>
     <string name="confirmDeleteSongFromPlaylist">Êtes vous sûr de supprimer cette musique de la playlist ?</string>
+    <string name="playlistUnallowedName">Vous ne pouvez pas utiliser ce nom pour votre playlist</string>
+    <string name="recentlyPlaylist">!system.recently_listened_songs?</string>
 
     <!-- popup -->
     <string name="popup_authors_title">Auteurs</string>

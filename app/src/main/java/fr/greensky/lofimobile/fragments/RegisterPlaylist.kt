@@ -45,12 +45,16 @@ class RegisterPlaylist(private val context: MainActivity) : Fragment() {
             if (name.isNullOrBlank() || name.isNullOrEmpty()) {
                 errorField?.text = getString(R.string.emptyName)
             } else {
-                val result = Database(context).registerPlaylist(name)
-
-                if (result == false) {
-                    errorField?.text = getString(R.string.alreadyExists)
+                if (name === getString(R.string.recentlyPlaylist)) {
+                    errorField?.text = getString(R.string.playlistUnallowedName)
                 } else {
-                    context.loadFragment(PlaylistsFragment(context))
+                    val result = Database(context).registerPlaylist(name)
+
+                    if (result == false) {
+                        errorField?.text = getString(R.string.alreadyExists)
+                    } else {
+                        context.loadFragment(PlaylistsFragment(context))
+                    }
                 }
             }
         }

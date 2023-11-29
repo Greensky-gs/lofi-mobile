@@ -102,7 +102,7 @@ class Database(public val context: MainActivity) {
 
         return !preferences.getString(name, null).isNullOrBlank()
     }
-    fun addToPlaylist(playlist: String, id: String): Boolean {
+    fun addToPlaylist(playlist: String, id: String, max: Int?): Boolean {
         if (!isPlaylist(playlist)) {
             createPlaylist(playlist)
         }
@@ -120,7 +120,16 @@ class Database(public val context: MainActivity) {
 
         if (isItemExists) return false
 
+        if (max !== null && play.ids.length() >= max) {
+            var i = play.ids.length() - 1;
+            while (i >= max) {
+                play.ids.remove(i)
+                i-=1
+            }
+        }
+
         play.ids.put(id)
+
         val preferences = context.getSharedPreferences("playlist", 0x0000)
         val editor = preferences.edit()
 
@@ -187,7 +196,7 @@ class Database(public val context: MainActivity) {
             editor.apply()
         }
     }
-    fun playlists(): MutableList<PlaylistModel> {
+    fun playlists(systems: Boolean? = false): MutableList<PlaylistModel> {
         val preferences = context.getSharedPreferences("playlist", 0x0000)
         val playlists = mutableListOf<PlaylistModel>()
 
@@ -197,7 +206,11 @@ class Database(public val context: MainActivity) {
             }
         }
 
-        return playlists
+        val unallowed = listOf(context.getString(R.string.recentlyPlaylist))
+
+        return playlists.filter {
+            if (!systems!!) { unallowed.indexOf(it.name) == -1 } else {true}
+        }.toMutableList()
     }
     fun registerPlaylist(name: String): Boolean {
         if (isPlaylist(name)) return false
