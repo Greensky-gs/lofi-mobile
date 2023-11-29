@@ -10,6 +10,7 @@ import com.google.firebase.storage.StorageReference
 import com.google.gson.Gson
 import fr.greensky.lofimobile.Database.Singleton.currentPlaylist
 import fr.greensky.lofimobile.Database.Singleton.databaseRef
+import fr.greensky.lofimobile.Database.Singleton.homeCurrentList
 import fr.greensky.lofimobile.Database.Singleton.stations
 import fr.greensky.lofimobile.Database.Singleton.storageRef
 import fr.greensky.lofimobile.models.DatabaseStationModel
@@ -28,6 +29,7 @@ class Database(public val context: MainActivity) {
         val stations = arrayListOf<StationModel>()
 
         var currentToAdd: StationModel? = null
+        var homeCurrentList: MutableList<StationModel> = mutableListOf()
 
         var currentPlaylist: PlaylistModel? = null
     }
@@ -231,5 +233,12 @@ class Database(public val context: MainActivity) {
     fun setCurrentPlaylist(playlist: PlaylistModel): PlaylistModel {
         currentPlaylist = playlist
         return playlist
+    }
+    fun getCurrentHomeList(): MutableList<StationModel> {
+        return homeCurrentList
+    }
+    fun setCurrentHomeList(list: MutableList<StationModel>): MutableList<StationModel> {
+        homeCurrentList = list
+        return list
     }
 }

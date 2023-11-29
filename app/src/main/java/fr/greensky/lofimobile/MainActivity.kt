@@ -88,16 +88,16 @@ class MainActivity : AppCompatActivity() {
 
         updateTheme(current)
 
-        alternate(fragment.toString())
+        alternate(fragment.toString(), db)
     }
     private fun updateTheme(current: String) {
         val button = findViewById<ImageView>(R.id.switchTheme)
         button.setImageResource(if (current === "dark") { R.drawable.ic_light } else { R.drawable.ic_dark })
     }
-    private fun alternate(input: String) {
+    private fun alternate(input: String, db: Database) {
         val fragmentFunctions = listOf(
             fun () {
-                loadFragment(HomeFragment(this))
+                loadFragment(HomeFragment(this, db.getCurrentHomeList()))
             },
             fun () {
                 loadFragment(SearchFragment(this))

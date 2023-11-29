@@ -137,6 +137,8 @@ class HomeFragment(private val context: MainActivity, private val songList: Muta
         }
 
         stationList = songs
+        db.setCurrentHomeList(stationList)
+
         recycler?.adapter = RecyclerAdapter(context, songs, R.layout.vertical_item, true)
         recycler?.addItemDecoration(ItemDecoration(40))
 
